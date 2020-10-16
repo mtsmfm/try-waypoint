@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  app:
+    init: true
+    image: ghcr.io/mtsmfm/try-waypoint
+    command: sleep infinity
+    volumes:
+      - ..:/app
+      - vendor:/app/vendor
+      - persisted:/persisted
+
+  postgres:
+    image: postgres:12.4-alpine
+    environment:
+      POSTGRES_PASSWORD: password
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+  vendor:
+  persisted:
